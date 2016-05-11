@@ -67,6 +67,10 @@ class GCMClass {
     GcmModule.subscribeTopic(topic, callback)
   }
 
+  static subscribeTopicSimple(topic){
+    GcmModule.subscribeTopicSimple(topic)
+  }
+
   static unsubscribeTopic(topic, callback){
     GcmModule.unsubscribeTopic(topic, callback)
   }
