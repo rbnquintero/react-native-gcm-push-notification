@@ -256,6 +256,18 @@ public class GcmModule extends ReactContextBaseJavaModule implements LifecycleEv
     }
 
     @ReactMethod
+    public void subscribeTopicSimple(String topic){
+        if(registrationToken != null && mIsInForeground){
+            GcmPubSub pubSub = GcmPubSub.getInstance(getReactApplicationContext());
+            try{
+                pubSub.subscribe(registrationToken, topic, null);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @ReactMethod
     public void unsubscribeTopic(String topic, com.facebook.react.bridge.Callback callback){
         if(registrationToken != null && mIsInForeground){
             GcmPubSub pubSub = GcmPubSub.getInstance(getReactApplicationContext());
