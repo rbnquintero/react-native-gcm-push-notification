@@ -246,6 +246,7 @@ public class GcmModule extends ReactContextBaseJavaModule implements LifecycleEv
             GcmPubSub pubSub = GcmPubSub.getInstance(getReactApplicationContext());
             try{
                 pubSub.subscribe(registrationToken, topic, null);
+                Log.d(TAG, "Subscribing topic " + topic);
             } catch (Exception e){
                 callback.invoke(e.getMessage());
             }
@@ -261,6 +262,7 @@ public class GcmModule extends ReactContextBaseJavaModule implements LifecycleEv
             GcmPubSub pubSub = GcmPubSub.getInstance(getReactApplicationContext());
             try{
                 pubSub.subscribe(registrationToken, topic, null);
+                Log.d(TAG, "Subscribing topic " + topic);
             } catch (Exception e){
                 e.printStackTrace();
             }
