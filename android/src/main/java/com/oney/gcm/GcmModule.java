@@ -140,13 +140,15 @@ public class GcmModule extends ReactContextBaseJavaModule implements LifecycleEv
 
                 if (getReactApplicationContext().hasActiveCatalystInstance()) {
                     Bundle bundle = intent.getBundleExtra("bundle");
-
+                    System.out.println("####");
+                    System.out.println(intent.getExtras());
                     String bundleString = convertJSON(bundle);
 
                     WritableMap params = Arguments.createMap();
                     params.putString("dataJSON", bundleString);
                     params.putBoolean("isInForeground", mIsInForeground);
-
+                    System.out.println(bundleString);
+                    System.out.println(params);
                     sendEvent("GCMRemoteNotificationReceived", params);
                     abortBroadcast();
                 } else {
@@ -281,6 +283,18 @@ public class GcmModule extends ReactContextBaseJavaModule implements LifecycleEv
             callback.invoke(null);
         } else {
             callback.invoke("Not connected to GCM");
+        }
+    }
+
+    @ReactMethod
+    public void unsubscribeTopicSimple(String topic){
+        if(registrationToken != null && mIsInForeground){
+            GcmPubSub pubSub = GcmPubSub.getInstance(getReactApplicationContext());
+            try{
+                pubSub.unsubscribe(registrationToken, topic);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 

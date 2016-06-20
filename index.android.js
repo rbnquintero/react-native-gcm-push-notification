@@ -75,6 +75,10 @@ class GCMClass {
     GcmModule.unsubscribeTopic(topic, callback)
   }
 
+  static unsubscribeTopicSimple(topic){
+    GcmModule.unsubscribeTopic(topic)
+  }
+
   constructor(data) {
     this.data = data;
   }
